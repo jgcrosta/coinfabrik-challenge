@@ -1,38 +1,26 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-import { type ChartData, BarChart } from "~/components/bar-chart";
-import { SelectChartDropDown } from "~/components/select-chart";
-import { SelectLimitDropDown } from "~/components/select-limit";
-import { SelectSourceDropDown } from "~/components/select-source";
+import { type ChartData, BarChart } from "~/components/chart/bar-chart";
+import { ChartComponent } from "~/components/chart/get-chart";
+import { SelectComponent } from "~/components/select-components/get-select";
 import { Stat } from "~/components/stat";
 import { Data, type Quote } from "~/interfaces/interfaces";
 import { api } from "~/utils/api";
 import { cg_data } from "~/utils/mockdata";
-import { ParallelCoordinatesChart } from "~/components/paralell-coordinates-chart";
-import { TreeMapChart } from "~/components/tree-map-chart";
+
+import { getUnifiedRankingData } from "~/utils/unified-ranking";
 
 const Home: NextPage = () => {
   const [limit, setLimit] = useState(10);
-  const [chartType, setChartType] = useState("Bar" as string);
+  const [chartType, setChartType] = useState("Bar");
   const [isRankChecked, setIsRankChecked] = useState(false);
-  const [source, setSource] = useState("CoinGecko" as string);
-  const [selectedSymbol, setSelectedSymbol] = useState("");
+  const [source, setSource] = useState("CoinGecko");
+  const [selectedSymbol, setSelectedSymbol] = useState("N/A");
   const [selectedQuote, setSelectedQuote] = useState<Quote>({
     market_cap: 0,
     volume_24h: 0,
   });
-
-  let data: Data[] = [];
-  const findDataFromSymbol = (symbol: string) => {
-    const foundData = data.find((item) => item.symbol === symbol);
-    if (!foundData) return;
-    setSelectedQuote({
-      market_cap: foundData.market_cap,
-      volume_24h: foundData.total_volume,
-    });
-    setSelectedSymbol(symbol);
-  };
 
   // Load cgData from local utils/mockdata.ts file (cg_data object)
   // const cgData = cg_data;
@@ -49,30 +37,56 @@ const Home: NextPage = () => {
     cryptocurrency_type: "coins",
   });
 
-  // Get CoinGecko data
+  // // Get CoinGecko data
   const {
     data: cgData,
     isLoading: cgIsLoading,
     isError: cgIsError,
   } = api.coinGecko.latest.useQuery(
     {
-      limit: 10,
+      limit: 300,
     },
     {
       onSuccess: (receivedData) => {
-        // Set the data source to use based on "source" state. If sourse is "CoinGecko", use cgData, if source is "CoinMarketCap", use cmcData
-        if (!cgData || !cmcData) return;
-        data = source === "CoinGecko" ? cgData : cmcData;
-        findDataFromSymbol(receivedData[0]?.symbol || "N/A");
+        receivedData?.forEach((item) => {
+          item.symbol = item.symbol.toUpperCase();
+        });
+        setSelectedQuote({
+          market_cap: receivedData[0]?.market_cap || 0,
+          volume_24h: receivedData[0]?.total_volume || 0,
+        });
+        setSelectedSymbol(receivedData[0]?.symbol || "N/A");
       },
     }
   );
+  if (cmcIsError) return <div>Error getting CoinMarketCap Data</div>;
+  if (cmcIsLoading) return <div>Loading CoinMarketCap Data</div>;
+  if (cgIsError) return <div>Error getting CoinGecko Data</div>;
+  if (cgIsLoading) return <div>Loading CoinGecko Data</div>;
 
-  // UseEffect to set the initial symbol and quote
-  if (cmcIsError || cgIsError) return <div>Error</div>;
-  if (cmcIsLoading || cgIsLoading) return <div>Loading...</div>;
+  const findDataFromSymbol = (symbol: string) => {
+    if (source !== "Unified Ranking") {
+      const foundData = data.find((item) => item.symbol === symbol);
+      if (!foundData) return;
+      setSelectedSymbol(foundData.symbol);
+      setSelectedQuote({
+        market_cap: foundData.market_cap,
+        volume_24h: foundData.total_volume,
+      });
+    } else {
+      const foundData = unifiedRankingData.find(
+        (item) => item.symbol === symbol
+      );
+      if (!foundData) return;
+      setSelectedSymbol(foundData.symbol);
+      setSelectedQuote({
+        market_cap: foundData["Market Cap."],
+        volume_24h: foundData["Volume [24H]"],
+      });
+    }
+  };
 
-  if (!data) return <div>Error</div>;
+  const data = source === "CoinGecko" ? cgData : cmcData;
 
   const processedData = data.map<ChartData>((item) => ({
     symbol: item.symbol,
@@ -81,15 +95,14 @@ const Home: NextPage = () => {
     "Volume [24H]": item.total_volume,
   }));
 
-  if (!processedData) return <div>Error</div>;
-  if (processedData.some((item) => !item)) return <div>Error</div>;
-
   // If isRankChecked is false, sort the data by "Market Cap." property, if isRankChecked is true, sort the data by "Volume [24H]" property.
-  processedData?.sort((a, b) =>
+  processedData.sort((a, b) =>
     isRankChecked
       ? b["Volume [24H]"] - a["Volume [24H]"]
       : b["Market Cap."] - a["Market Cap."]
   );
+
+  const unifiedRankingData = getUnifiedRankingData(cgData, cmcData);
 
   return (
     <>
@@ -107,60 +120,39 @@ const Home: NextPage = () => {
         </div>
         <div className="flex h-full w-full flex-col">
           <div className="mt-4 grid grid-cols-4 ">
-            {/* Select Chart DropDown */}
-            <div className="flex items-center justify-center">
-              <span className="mr-2">Chart type:</span>
-              <SelectChartDropDown
-                chartType={chartType}
-                setChartType={(newChartType) => setChartType(newChartType)}
-              />
-            </div>
-            {/* Select Limit DropDown */}
-            <div className="flex items-center justify-center">
-              <span className="mr-2">Request limit:</span>
-              <SelectLimitDropDown
-                limit={limit}
-                setLimit={(newLimit) => setLimit(newLimit)}
-              />
-            </div>
-            {/* Select Rank Toggle */}
-            <div className="flex items-center justify-center">
-              <span className="mr-2">Market Cap.</span>
-              <input
-                type="checkbox"
-                className="toggle bg-opacity-100"
-                checked={isRankChecked}
-                onChange={() => setIsRankChecked(!isRankChecked)}
-              />
-              <span className="ml-4 mr-4">Volume [24H]</span>
-            </div>
-            {/* Select Source DropDown */}
-            <div className="flex items-center justify-center">
-              <span className="mr-2">Source:</span>
-              <SelectSourceDropDown
-                source={source}
-                setSource={(newSource) => setSource(newSource)}
-              />
-            </div>
+            <SelectComponent
+              limit={limit}
+              chartType={chartType}
+              setChartType={(chartType) => {
+                setChartType(chartType);
+                if (chartType === "Parallel Coordinates")
+                  setIsRankChecked(false);
+              }}
+              setLimit={(limit) => setLimit(limit)}
+              isRankChecked={isRankChecked}
+              setIsRankChecked={(isRankChecked) =>
+                setIsRankChecked(isRankChecked)
+              }
+              source={source}
+              setSource={(source) => {
+                setSource(source);
+                if (source === "Unified Ranking") setIsRankChecked(false);
+              }}
+            />
           </div>
           {/* Chart */}
           <div className="flex h-full w-full items-center">
-            {chartType === "Bar" && (
-              <BarChart
-                preProcessedData={processedData.slice(0, limit)}
-                onDataClick={(dataSymbol) => findDataFromSymbol(dataSymbol)}
-              />
-            )}
-            {chartType === "Parallel Coordinates" && (
-              <ParallelCoordinatesChart data={processedData.slice(0, limit)} />
-            )}
-            {chartType === "Tree Map" && (
-              <TreeMapChart
-                preProcessedData={processedData.slice(0, limit)}
-                onDataClick={(dataSymbol) => findDataFromSymbol(dataSymbol)}
-                dataKey={isRankChecked ? "Volume [24H]" : "Market Cap."}
-              />
-            )}
+            <ChartComponent
+              limit={limit}
+              chartType={chartType}
+              isRankChecked={isRankChecked}
+              processedData={processedData}
+              findDataFromSymbol={(symbol: string) =>
+                findDataFromSymbol(symbol)
+              }
+              unifiedData={unifiedRankingData}
+              source={source}
+            />
           </div>
         </div>
       </main>

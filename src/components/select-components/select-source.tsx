@@ -13,6 +13,7 @@ export const SelectSourceDropDown = (props: {
       </option>
       <option>CoinMarketCap</option>
       <option>CoinGecko</option>
+      <option>Unified Ranking</option>
     </select>
   );
 };

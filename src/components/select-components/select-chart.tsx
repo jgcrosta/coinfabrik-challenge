@@ -1,6 +1,7 @@
 export const SelectChartDropDown = (props: {
   chartType: string;
   setChartType: (arg0: string) => void;
+  disabled: boolean;
 }) => {
   function handleChartChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const netChartType = event.target.value.toString();
@@ -11,6 +12,7 @@ export const SelectChartDropDown = (props: {
       id="selectBox"
       className="select-bordered select max-w-xs"
       onChange={handleChartChange}
+      disabled={props.disabled}
     >
       <option disabled selected>
         {props.chartType}
