@@ -2,7 +2,7 @@
 
 ## Introducción
 
-El objetivo de este proyecto es acceder a información de las 300 criptomonedas con mayor market cap y volumen diario utilizando las API de CoinGecko y CoinMarketCap, y visualizar esta información en gráficos de barra, coordenadas paralelas y tree map mediante la librería Nivo para JavaScript. Además, se ha creado un ranking unificador y se lo visualiza mediante un gráfico de torta. Este proyecto ha requerido el aprendizaje de nuevas tecnologías, incluyendo la librería Nivo y las APIs de CoinGecko y CoinMarketCap.
+El objetivo de este proyecto es acceder a información de las 300 criptomonedas con mayor market cap y volumen diario utilizando las API de CoinGecko y CoinMarketCap, y visualizar esta información en gráficos de barra, coordenadas paralelas y mapa de arboles mediante la librería Nivo para JavaScript. Además, se ha creado un ranking unificador y se lo visualiza mediante un gráfico de torta. Este proyecto ha requerido el aprendizaje de nuevas tecnologías, incluyendo la librería Nivo y las APIs de CoinGecko y CoinMarketCap.
 
 En esta documentación se econtraran instrucciones detalladas para instalar y ejecutar el proyecto, así como información sobre las características principales y cómo utilizarlas. 
 
