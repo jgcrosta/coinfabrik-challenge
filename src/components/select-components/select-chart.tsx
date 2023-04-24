@@ -14,11 +14,8 @@ export const SelectChartDropDown = (props: {
       onChange={handleChartChange}
       disabled={props.disabled}
     >
-      <option disabled selected>
-        {props.chartType}
-      </option>
-      <option>Bar</option>
-      <option>Parallel Coordinates</option>
+      <option selected>Bar</option>
+      <option >Parallel Coordinates</option>
       <option>Tree Map</option>
     </select>
   );

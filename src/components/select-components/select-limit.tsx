@@ -12,10 +12,7 @@ export const SelectLimitDropDown = (props: {
       className="select-bordered select max-w-xs"
       onChange={handleLimitChange}
     >
-      <option disabled selected>
-        {props.limit}
-      </option>
-      <option>10</option>
+      <option selected>10</option>
       <option>50</option>
       <option>100</option>
       <option>300</option>

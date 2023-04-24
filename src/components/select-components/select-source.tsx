@@ -8,10 +8,7 @@ export const SelectSourceDropDown = (props: {
       className="select-bordered select max-w-xs"
       onChange={(event) => props.setSource(event.target.value)}
     >
-      <option disabled selected>
-        {props.source}
-      </option>
-      <option>CoinMarketCap</option>
+      <option selected>CoinMarketCap</option>
       <option>CoinGecko</option>
       <option>Unified Ranking</option>
     </select>
