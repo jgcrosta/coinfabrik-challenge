@@ -20,7 +20,7 @@ El proyecto se desarrolló con TypeScript y [Next.js](https://nextjs.org), y uti
 - CoinGecko API: una API para acceder a información sobre criptomonedas.
 - CoinMarketCap API: una API para acceder a información sobre criptomonedas.
 
-Además, el proyecto se deployó en la plataforma de [Vercel](https://vercel.com/), lo que permite una fácil puesta en producción y escalabilidad. En esta documentación encontrarás instrucciones detalladas sobre cómo instalar y ejecutar el proyecto, así como información sobre sus características principales y cómo utilizarlas.
+Además, el proyecto se deployó en la plataforma de [Vercel](https://vercel.com/), lo que permite una fácil puesta en producción y escalabilidad.
 
 ### Instalación
 
