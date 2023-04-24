@@ -32,4 +32,7 @@ Para instalar el proyecto, siga los siguientes pasos:
 3. Configurar las variables de entorno para la clave de la API de CoinMarketCap. Para ello, cree un archivo .env.local en la raíz del proyecto y agregue su clave privada.
 4. Ejecutar el comando pnpm dev en la raíz del proyecto para iniciar la aplicación.
 
+## Funcionalidades
+
+
 
