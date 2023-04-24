@@ -4,7 +4,7 @@
 
 El objetivo de este proyecto es acceder a información de las 300 criptomonedas con mayor market cap y volumen diario utilizando las API de CoinGecko y CoinMarketCap, y visualizar esta información en gráficos de barra, coordenadas paralelas y tree map mediante la librería Nivo para JavaScript. Además, se ha creado un ranking unificador y se lo visualiza mediante un gráfico de torta. Este proyecto ha requerido el aprendizaje de nuevas tecnologías, incluyendo la librería Nivo y las APIs de CoinGecko y CoinMarketCap.
 
-En esta documentación encontrarás instrucciones detalladas para instalar y ejecutar el proyecto, así como información sobre las características principales y cómo utilizarlas. 
+En esta documentación se econtraran instrucciones detalladas para instalar y ejecutar el proyecto, así como información sobre las características principales y cómo utilizarlas. 
 
 ## Requisitos
 
@@ -42,32 +42,6 @@ El proyecto cuenta con las siguientes funcionalidades:
 - Filtro de visualización por cantidad de criptomonedas (10, 50, 100 o 300).
 - Selección de fuente de información (CoinGecko, CoinMarketCap o ranking unificador).
 - Selección de tipo de gráfico (gráfico de barra, coordenadas paralelas y mapa de arboles).
-
-## Guía de usuario
-
-### Acceso a informacion de criptomonedas
-
-Para acceder a la información de las criptomonedas, siga los siguientes pasos:
-
-1. Ingrese al [sitio web](https://coinfabrik-challenge.vercel.app/) de la aplicación.
-2. Seleccione la fuente de información que desea utilizar (CoinGecko, CoinMarketCap o ranking unificador).
-3. Seleccione la cantidad de criptomonedas que desea visualizar (10, 50, 100 o 300).
-
-### Visualización de información mediante gráficos
-
-Para visualizar la información mediante gráficos, siga los siguientes pasos:
-
-1. Dentro del [sitio web](https://coinfabrik-challenge.vercel.app/), seleccione el tipo de gráfico que desea utilizar (gráfico de barra, coordenadas paralelas o mapa de arboles).
-2. Seleccione la fuente de información que desea utilizar (CoinGecko, CoinMarketCap).
-3. Seleccione la cantidad de criptomonedas que desea visualizar (10, 50, 100 o 300).
-
-### Visualización del ranking unificador mediante gráfico de torta
-
-Para visualizar el ranking unificador, siga los siguientes pasos:
-
-1. Ingrese al [sitio web](https://coinfabrik-challenge.vercel.app/) de la aplicación.
-2. Seleccione "Ranking Unificador" como fuente de información.
-3. Seleccione la cantidad de criptomonedas que desea visualizar (10, 50, 100 o 300).
 
 ## Conclusión
 
