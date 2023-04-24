@@ -56,6 +56,12 @@ export const TreeMapChart = (props: {
           <div style={{ fontWeight: "bold", marginBottom: "5px" }}>
             {node.id} 🚀
           </div>
+          <div>
+            {props.dataKey === "Market Cap." ? "💰" : "📈"}
+            {props.dataKey}
+            {": "}
+            {getDigits(node.value)}
+          </div>
         </div>
       )}
     />
