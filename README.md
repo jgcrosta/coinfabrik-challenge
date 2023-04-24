@@ -45,7 +45,7 @@ El proyecto cuenta con las siguientes funcionalidades:
 
 ## Guía de usuario
 
-### Acceso a información de criptomonedas
+### Acceso a informacion de criptomonedas
 
 Para acceder a la información de las criptomonedas, siga los siguientes pasos:
 
@@ -61,7 +61,7 @@ Para visualizar la información mediante gráficos, siga los siguientes pasos:
 2. Seleccione la fuente de información que desea utilizar (CoinGecko, CoinMarketCap).
 3. Seleccione la cantidad de criptomonedas que desea visualizar (10, 50, 100 o 300).
 
-### Visualización del ranking unificador mediante gráfico de torta
+### Visualización del ranking unificador mediante gráfico de torta
 
 Para visualizar el ranking unificador, siga los siguientes pasos:
 
