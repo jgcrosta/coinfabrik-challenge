@@ -34,5 +34,48 @@ Para instalar el proyecto, siga los siguientes pasos:
 
 ## Funcionalidades
 
+El proyecto cuenta con las siguientes funcionalidades:
+
+- Acceso a información de las 300 criptomonedas con mayor market cap a través de las APIs de CoinGecko y CoinMarketCap.
+- Visualización de información mediante gráficos de barra, coordenadas paralelas y mapa de arboles, implementados con la librería Nivo para JavaScript.
+- Cálculo de un ranking unificador que se muestra mediante un gráfico de torta.
+- Filtro de visualización por cantidad de criptomonedas (10, 50, 100 o 300).
+- Selección de fuente de información (CoinGecko, CoinMarketCap o ranking unificador).
+- Selección de tipo de gráfico (gráfico de barra, coordenadas paralelas y mapa de arboles).
+
+## Guía de usuario
+
+### Acceso a información de criptomonedas
+
+Para acceder a la información de las criptomonedas, siga los siguientes pasos:
+
+1. Ingrese al [sitio web](https://coinfabrik-challenge.vercel.app/) de la aplicación.
+2. Seleccione la fuente de información que desea utilizar (CoinGecko, CoinMarketCap o ranking unificador).
+3. Seleccione la cantidad de criptomonedas que desea visualizar (10, 50, 100 o 300).
+
+### Visualización de información mediante gráficos
+
+Para visualizar la información mediante gráficos, siga los siguientes pasos:
+
+1. Dentro del [sitio web](https://coinfabrik-challenge.vercel.app/), seleccione el tipo de gráfico que desea utilizar (gráfico de barra, coordenadas paralelas o mapa de arboles).
+2. Seleccione la fuente de información que desea utilizar (CoinGecko, CoinMarketCap).
+3. Seleccione la cantidad de criptomonedas que desea visualizar (10, 50, 100 o 300).
+
+### Visualización del ranking unificador mediante gráfico de torta
+
+Para visualizar el ranking unificador, siga los siguientes pasos:
+
+1. Ingrese al [sitio web](https://coinfabrik-challenge.vercel.app/) de la aplicación.
+2. Seleccione "Ranking Unificador" como fuente de información.
+3. Seleccione la cantidad de criptomonedas que desea visualizar (10, 50, 100 o 300).
+
+## Conclusión
+
+Este proyecto ha permitido desarrollar una aplicación web que provee información actualizada sobre las criptomonedas de mayor capitalización de mercado. Para ello, se han utilizado las tecnologías React, TypeScript, Tailwind, DaisyUI, Next.js, tRPC, Nivo y las APIs de CoinGecko y CoinMarketCap.
+
+La aplicación ofrece diversas funcionalidades que permiten visualizar los datos obtenidos mediante gráficos de barra, coordenadas paralelas y mapa de arboles. Además, se ha desarrollado un cálculo de ranking unificador que se muestra mediante un gráfico de torta.
+
+En resumen, este proyecto ha permitido desarrollar una aplicación web completa utilizando tecnologías modernas y relevantes, lo cual ha permitido obtener conocimientos y habilidades valiosas en el campo del desarrollo web.
+
 
 
