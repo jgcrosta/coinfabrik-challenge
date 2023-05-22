@@ -27,7 +27,7 @@ Además, el proyecto se deployó en la plataforma de [Vercel](https://vercel.com
 Instalación
 Para instalar el proyecto, siga los siguientes pasos:
 
-1. Clonar el repositorio del proyecto en su máquina local mediante el comando ```git clone https://github.com/jgcrosta/coinfabrik-challenge.git.```
+1. Clonar el repositorio del proyecto en su máquina local mediante el comando ```git clone https://github.com/jgcrosta/crypto-ranking.git.```
 2. Ejecutar el comando `pnpm install` en la raíz del proyecto para instalar todas las dependencias.
 3. Configurar las variables de entorno para la clave de la API de CoinMarketCap. Para ello, cree un archivo .env en la raíz del proyecto y agregue su clave privada.
 4. Ejecutar el comando `pnpm dev` en la raíz del proyecto para iniciar la aplicación.
